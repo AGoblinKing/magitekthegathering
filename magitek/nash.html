@@ -1,0 +1,166 @@
+<polymer-element name="magitek">
+  <link rel="import" href="8bit.html">
+  <template>
+    <style>
+      @host {
+        :scope {
+          display: block;
+          height: 100%;
+          font-family: 'Press Start 2P';
+        }
+      }
+      #title {
+        position:relative;
+        z-index:2;
+        text-shadow: -1px -1px 0 #fff,
+        1px -1px 0 #fff,
+        -1px 1px 0 #fff,
+        1px 1px 0 #fff; 
+      }
+      #title h1 {
+        font-size: 5em;
+      }
+      #title h2 {
+        font-size: 2em;
+        margin-top: -1em;
+        margin-left: 8em;
+      }
+      #zline {
+        background-color: #aaf;
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        background-image: url(images/bgsky.png);
+        background-size: 700px ;
+      }
+      #cover {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        z-index: 500;
+        pointer-events: none;
+        -moz-box-shadow:    inset 0 0 200px #000000;
+        -webkit-box-shadow: inset 0 0 200px #000000;
+        box-shadow:         inset 0 0 200px #000000;
+      }
+      #ground {
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        top: 25%;
+        transform: rotateX(60deg);
+        -webkit-transform: rotateX(60deg);
+        -moz-transform: rotateX(60deg);
+        -ms-transform: rotateX(60deg);
+        background-image: url(images/snowbg.jpg);
+        -moz-box-shadow:    0px -2px 5px 6px #ccc;
+        -webkit-box-shadow: 0px -2px 5px 6px #ccc;
+        box-shadow:         0px -2px 5px 6px #ccc;
+      }
+      #characters {
+        position: fixed;
+        top: 75%;
+        width: 100%;
+      }
+      #characters img {
+        margin: 40px;
+        width: 120px;
+        margin-top: 100px;
+        display:block;
+        float:left;
+        
+      }
+      #characters div {
+        width: 600px;
+      }
+      #characters .oddman {
+        display: inline-block;
+        margin-top: 0px;
+      }
+      #content {
+        position: relative;
+        z-index: 5;
+      }
+
+    </style>
+    <div id="cover"></div>
+    <div id="content">
+      <center>
+        <div id="title">
+            <h1>Magitek</h1>
+            <h2>the Gathering</h2>
+        </div>
+        <div id="buttons">
+          <ebit>
+          </ebit>
+        </div>
+        <!--
+        <ebit>Headquarters</ebit>
+        <ebit>
+          
+        </ebit> -->
+      </center>
+    </div>
+    <div id="zline">
+      <div id="ground">
+      </div>
+    </div>
+    <div id="characters">
+      <center>
+        <div>
+          <img src="images/walker.gif"/>
+          <img class="oddman" src="images/walker.gif"/>
+          <img src="images/walker.gif"/>
+        </div>
+      </center>
+    </div>
+  </template>
+  <script> 
+      Polymer("magitek", {
+        ready: function() {
+          document.timeline.play(new Animation(this.$.ground, [
+            {backgroundPosition: "0px 0px"},
+            {backgroundPosition: "0px 1024px"}
+          ], {
+            iterationDuration: 10,
+            iterationCount: Infinity
+          }));
+
+          document.timeline.play(new Animation(this.$.zline, [
+            {backgroundPosition: "0px 0px"},
+            {backgroundPosition: "350px -50px"},
+            {backgroundPosition: "700px 0px"}
+          ], {
+            iterationDuration: 80,
+            iterationCount: Infinity
+          }));
+
+          document.timeline.play(new Animation(this.$.cover, [
+            {opacity: 1}, 
+            {opacity: .8}
+            ], {
+            iterationDuration: 8,
+            iterationCount: Infinity,
+            direction: "alternate"
+          }));
+
+          document.timeline.play(new Animation(this.$.characters, [
+            {marginLeft: "-200px", marginTop: "-100px"},
+            {marginLeft: "120px", marginTop: "50px"},
+            {marginLeft: "0px", marginTop: "50px"},
+            {marginLeft: "200px", marginTop: "100px"}
+          ], {
+            iterationDuration: 80,
+            direction: "alternate",
+            iterationCount: Infinity
+          }));
+
+
+        }
+      });
+  </script>
+</polymer-element>

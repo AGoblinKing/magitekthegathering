@@ -1,0 +1,173 @@
+<polymer-element name="ebit">
+  <template>
+    <style>
+      @host {
+        :scope {
+          display: inline-block;
+          text-align: left;
+          color: white;
+          text-shadow: 1px 1px #000;
+        }
+      }
+      .option {
+        margin: 5px 0px;
+        cursor: pointer;
+        height: 32px;
+      }
+      #mecha {
+        position: absolute;
+        margin-left: -50px;
+        margin-top: -5px;
+        -webkit-transition: margin-top .2s;
+        -moz-transition: margin-top .2s;
+        transition: margin-top .2s;
+      }
+      #mecha #one {
+        background-image: url("images/armor.gif");
+        background-size: 100% 100%;
+        width: 40px;
+        height: 40px;
+        position: absolute;
+      }
+      #mecha #two {
+        background-image: url("images/armor2.gif");
+        background-size: 100% 100%;
+        width: 40px;
+        height: 40px;
+        z-index:5;
+      }
+      .panel.menu {
+        padding-left: 64px;
+      }
+      .content {
+        display: inline-block;
+      }
+      .panel {
+        vertical-align: top;
+        display: inline-block;
+         margin: 10px;
+          clear:both;
+              border-radius: .25em;
+                padding: 1em;
+          background: url(images/menubg.jpg);
+                    background-size: 100% 100%;
+          box-shadow: 0px 0px 0px 2px #555,
+            0px 0px 0px 4px #fff,
+            0px 0px 0px 6px #555;
+      }
+      .profile {
+        width: 64px;
+        height: 64px;
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 5px;
+      }
+      .classy, b  {
+        font-family: 'Press Start 2P';
+        font-weight: normal;
+      }
+      b {
+        font-size: 10pt;
+      }
+      .fancy{
+        font-family:  "Oleo Script Swash Caps";
+      }
+
+      .codeir {
+        background-image: url(images/codeir.gif);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        -moz-transform: scaleX(-1);
+        -o-transform: scaleX(-1);
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1);
+        filter: FlipH;
+        -ms-filter: "FlipH";
+      }
+      .kefka {
+        background-image: url(images/kefka.gif);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        -moz-transform: scaleX(-1);
+        -o-transform: scaleX(-1);
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1);
+        filter: FlipH;
+        -ms-filter: "FlipH";
+      }
+      .signoff {
+        text-align: right;
+        font-size: 15pt;
+        font-family:  "Oleo Script Swash Caps";
+      }
+      .section {
+        width: 500px;
+        font-family: "Lucida Console", Monaco, monospace;
+      }
+      .nodick {
+        font-size: 20pt;
+      }
+    </style>
+    <div class="panel menu">
+      <div id="mecha"><div id="one"></div><div id="two"></div></div>
+      <div class="option" on-mouseover="joinHover">
+        Join!
+      </div>
+      <div class="option" on-mouseover="newsHover">
+        News
+      </div>
+      <div class="option" on-mouseover="hqHover">
+        Secret HQ
+      </div>
+    </div>
+    <div class="content">
+      <div class="news section">
+          <div class="panel">
+            <p class="classy">Hey guys</p>
+        <p>    
+        This is the first iteration of the website and I'm still hashing out all the key bits. In the mean time check out our secret headquarters or join up!</p>
+
+        <div class="signoff">-- Codeir<div class="profile codeir"></div></div>
+          </div>
+      </div>
+      <div class="about section">
+        <div class="panel">
+          <p class="classy">About MtG</p>
+        <p>Magitek the Gathering is a <b>FFXIV</b> Free Company on the <b>Gilgamesh</b> server. </p>
+        <p>We encourage members to group up into link shells within the FC to perform tasks (like raiding!)</p>
+        <p> We have only one rule...</p>
+        <p class="fancy nodick">Don't be a dick.</p>
+
+          <div class="signoff">-- Kefka is a Dick<div class="profile kefka"></div></div>
+        </div>
+      </div>
+    </div>
+  </template>
+  <script>
+    Polymer("ebit", {
+      ready: function() {
+        this.setMecha(2);
+        document.timeline.play(new Animation(this.$.two, [
+            {opacity: 0},
+            {opacity: 1}
+          ], {
+            direction: "alternate",
+            iterationDuration: 2,
+            iterationCount: Infinity
+          }));
+      },
+      joinHover: function() {
+        this.setMecha(1);
+      },
+      newsHover: function() {
+        this.setMecha(2);
+      },
+      hqHover: function() {
+        this.setMecha(3);
+      },
+      setMecha: function(x) {
+        this.$.mecha.style.marginTop = -8+5*(x-1) + 32*(x-1) +"px";
+      }
+    })
+  </script>
+</polymer-element>

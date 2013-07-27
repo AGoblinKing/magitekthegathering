@@ -1,0 +1,58 @@
+<polymer-element name="ffcard" theme="polymer-ui-dark-theme" extends="polymer-flex-layout" iscontainer vertical>
+  <link rel="import" src="/polymer-all/polymer-elements/polymer-flex-layout/polymer-flex-layout.html">
+  <link rel="import" src="/polymer-all/polymer-ui-elements/polymer-ui-toolbar/polymer-ui-toolbar.html">
+  <link rel="import" src="/polymer-all/polymer-ui-elements/polymer-ui-icon-button/polymer-ui-icon-button.html">
+  <link rel="import" src="/polymer-all/polymer-ui-elements/polymer-ui-menu-item/polymer-ui-menu-item.html">
+  <link rel="import" src="/polymer-all/polymer-ui-elements/polymer-ui-sidebar-menu/polymer-ui-sidebar-menu.html">
+
+  <link rel="import" src="triad.html">
+
+  <link href='http://fonts.googleapis.com/css?family=Cabin' rel='stylesheet' type='text/css' polymer-scope="global">
+
+  <template>
+    <style>
+      h1 {
+        font-family: Cabin;
+      }
+      #gameArea {
+        background-color:white;
+      }
+      @host {
+        :scope {
+          display: block;
+          height: 100%;
+          background-color: #666;
+        }
+      }
+    </style>
+      <polymer-ui-toolbar>
+        <h1>FFXIV Prototype Cards</h1>
+      </polymer-ui-toolbar>
+      <polymer-flex-layout flex iscontainer>
+        <polymer-ui-sidebar-menu selected="0" label="Select Game">
+          <polymer-ui-menu-item icon="dialog" on-click="loadTriad"label="Triad"></polymer-ui-menu-item>
+          <polymer-ui-menu-item icon="dialog" label="Triad"></polymer-ui-menu-item>
+          <polymer-ui-menu-item icon="dialog" label="Triad"></polymer-ui-menu-item>
+          <polymer-ui-menu-item icon="dialog" label="Triad"></polymer-ui-menu-item>
+          <polymer-ui-menu-item icon="dialog" label="Triad"></polymer-ui-menu-item>
+          <polymer-ui-menu-item icon="dialog" label="Triad"></polymer-ui-menu-item>
+          <polymer-ui-menu-item icon="dialog" label="Triad"></polymer-ui-menu-item>
+        </polymer-ui-sidebar-menu>
+        <div id="gameArea" flex>
+          Bob
+        </div>
+      </polymer-flex-layout>
+  </template>
+
+  <script>
+    Polymer("ffcard", {
+      ready: function() {
+        // popup login modal
+        this.loadTriad();
+      },
+      loadTriad: function() {
+        this.$.gameArea.innerHTML = "<triad></triad>";
+      }
+    });
+  </script>
+</polymer-element>
